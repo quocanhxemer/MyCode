@@ -41,7 +41,7 @@ void addTail(node **head, int a)
     }
 }
 
-void addAfter(node **head, int position, int a)
+void addAt(node **head, int position, int a)
 {
     if (!position)
         addHead(head, a);
@@ -63,7 +63,11 @@ void addAfter(node **head, int position, int a)
 void delhead(node **head)
 {
     if (*head != NULL)
+    {
+        node *del = *head;
         *head = (*head)->next;
+        free(del);
+    }
 }
 
 void delTail(node **head)
@@ -73,25 +77,31 @@ void delTail(node **head)
         node *temp = *head;
         while (temp->next->next != NULL)
             temp = temp->next;
+        node *del = temp->next;
         temp->next = NULL;
+        free(del);
     }
 }
 
 void deletePos(node **head, int position)
 {
-    if (position == 1)
+    if (position == 0)
         *head = (*head)->next;
     else
     {
         node *temp = *head;
-        for (int i = 0; i < position - 2; i++)
+        for (int i = 0; i < position - 1; i++)
         {
             if (temp->next == NULL)
                 break;
             temp = temp->next;
         }
         if (temp->next != NULL)
+        {
+            node *del = temp->next;
             temp->next = temp->next->next;
+            free(del);
+        }
     }
 }
 
@@ -99,4 +109,16 @@ void out(node *head)
 {
     for (node *i = head; i != NULL; i = i->next)
         printf("%d ", i->data);
+}
+
+void freeList(node **head)
+{
+    node *temp = NULL;
+    while (*head != NULL)
+    {
+        temp = *head;
+        *head = (*head)->next;
+        free(temp);
+    }
+    free(*head);
 }
