@@ -29,6 +29,7 @@ int main()
 
     while (1)
     {
+        fflush(stdin);
         system("cls");
         int index;
         printf("Chuong trinh quan li thong tin\n");
