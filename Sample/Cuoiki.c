@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
+// #include <conio.h>
 
 #define MAX 100
 
@@ -21,6 +21,8 @@ void Hienthi();
 void Viettatten();
 void Xoavien();
 void Sapxep();
+
+char chuthuong(char c);
 
 int main()
 {
@@ -59,7 +61,8 @@ int main()
         else
             printf("Nhap sai, hay nhap lai!\n");
 
-        getch();
+        fflush(stdin);
+        getchar();
     }
     printf("Thoat chuong trinh thanh cong!\n");
 }
@@ -124,9 +127,9 @@ void Hienthi()
 
 char chuthuong(char c)
 {
-    if (c >= 'a' && c <= 'z')
-        return c;
-    return c + 32;
+    if (c >= 'A' && c <= 'Z')
+        return c + 32;
+    return c;
 }
 
 void Viettatten()
